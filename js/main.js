@@ -5,8 +5,8 @@ import * as trans from '../i18n/translations.json'
 import App from './components/App.vue'
 
 const router = createRouter({
-  base: '/',
-  history: createWebHistory(),
+  base: import.meta.env.BASE_URL,
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     { path: '/', component: () => import('./pages/HomePage.vue') },
     { path: '/about', component: () => import('./pages/AboutPage.vue') },
