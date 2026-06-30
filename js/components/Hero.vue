@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { t } from './lang.js'
+import { t } from '../i18n/lang.js'
 </script>
 
 <style>

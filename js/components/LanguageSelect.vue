@@ -5,7 +5,7 @@
       <span class="name">{{ names[lang] }}</span>
       <span class="arrow">▼</span>
     </button>
-    <ul class="lang-menu" v-show="isOpen">
+    <ul class="lang-menu" :class="{ open: isOpen }" v-show="isOpen">
       <li
         v-for="code in ['zh', 'en', 'ja']"
         :key="code"
@@ -21,14 +21,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
-const select = (lang) => {
-  emit('update:language', lang)
-}
-
-const isOpen = defineModel<boolean>('open', { required: false })
-const lang = defineModel('language', { required: true })
+const emit = defineEmits(['update:language'])
 
 const names = {
   zh: '中文',
@@ -42,21 +37,19 @@ const flags = {
   ja: '🇯🇵'
 }
 
-const value = localStorage.getItem('gemma4_lang') || 'en'
-lang.value = value
+const isOpen = ref(false)
+const lang = ref(localStorage.getItem('gemma4_lang') || 'en')
 
-const locale = computed(() => {
-  return lang.value
-})
-
-const emit = {
-  update: (value) => {
-    lang.value = value
-  }
-}
+const flag = computed(() => flags[lang.value])
 
 const toggleMenu = () => {
   isOpen.value = !isOpen.value
+}
+
+const select = (code) => {
+  lang.value = code
+  isOpen.value = false
+  emit('update:language', code)
 }
 </script>
 

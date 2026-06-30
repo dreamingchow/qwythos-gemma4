@@ -1,5 +1,6 @@
 import { createApp, h } from 'vue'
-import { createRouter, createWebHistory } from './router/index.js'
+import { createWebHistory } from 'vue-router'
+import { createRouter } from './router/index.js'
 import * as trans from '../i18n/translations.json'
 import App from './components/App.vue'
 

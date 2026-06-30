@@ -1,9 +1,7 @@
 <template>
-  <App>
-    <SpecPage />
-  </App>
+  <Spec />
 </template>
 
 <script setup>
-import SpecPage from '../components/SpecPage.vue'
+import Spec from './Spec.vue'
 </script>

@@ -1,7 +1,5 @@
 <template>
-  <App>
-    <BlogPage />
-  </App>
+  <BlogPage />
 </template>
 
 <script setup>

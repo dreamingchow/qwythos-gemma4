@@ -1,9 +1,7 @@
 <template>
-  <App>
-    <AddModelPage />
-  </App>
+  <AddModel />
 </template>
 
 <script setup>
-import AddModelPage from './AddModel.vue'
+import AddModel from './AddModel.vue'
 </script>

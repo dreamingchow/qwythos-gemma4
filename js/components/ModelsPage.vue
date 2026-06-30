@@ -10,13 +10,13 @@
         <h2>{{ t('models.selectModel') }}</h2>
         <div class="model-chips">
           <button
-            v-for="code in ['gemma3e', 'gemma2b', 'gemma2b-t', 'gemma4p', 'gemma4s', 'gemma4c', 'gemma4m', 'gemma4h']"
-            :key="code"
+            v-for="model in availableModels"
+            :key="model.code"
             class="chip"
-            :class="{ active: route.meta.filter === code }"
-            @click="handleFilter(code)"
+            :class="{ active: activeFilter === model.code }"
+            @click="handleFilter(model.code)"
           >
-            {{ t('modelsList.' + code) }}
+            {{ model.label }}
           </button>
         </div>
       </div>
@@ -32,36 +32,42 @@
 </template>
 
 <script setup>
-import { t } from './i18n/lang.js'
-import SpecCard from './SpecCard.js'
+import { computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { t } from '../i18n/lang.js'
+import SpecCard from './SpecCard.vue'
 
-import gemma3eSpec from '@/mock/gemma3e-spec.js'
-import gemma2bSpec from '@/mock/gemma2b-spec.js'
-import gemma2btSpec from '@/mock/gemma2bt-spec.js'
-import gemma4pSpec from '@/mock/gemma4p-spec.js'
-import gemma4sSpec from '@/mock/gemma4s-spec.js'
-import gemma4cSpec from '@/mock/gemma4c-spec.js'
-import gemma4mSpec from '@/mock/gemma4m-spec.js'
-import gemma4hSpec from '@/mock/gemma4h-spec.js'
+import gemma4Spec from '../mock/gemma4-spec.js'
+import gemma3eSpec from '../mock/gemma3e-spec.js'
+import gemma2bSpec from '../mock/gemma2b-spec.js'
 
 const route = useRoute()
+const router = useRouter()
 const models = {
+  gemma4: gemma4Spec,
   gemma3e: gemma3eSpec,
-  gemma2b: gemma2bSpec,
-  gemma2b-t: gemma2btSpec,
-  gemma4p: gemma4pSpec,
-  gemma4s: gemma4sSpec,
-  gemma4c: gemma4cSpec,
-  gemma4m: gemma4mSpec,
-  gemma4h: gemma4hSpec
+  gemma2b: gemma2bSpec
 }
+const availableModels = [
+  { code: 'all', label: t('home.seeAll') },
+  { code: 'gemma4', label: 'Gemma 4' },
+  { code: 'gemma3e', label: t('modelsList.gemma3e') },
+  { code: 'gemma2b', label: t('modelsList.gemma2b') }
+]
 
-const filter = route.meta.filter || 'all'
-const filtered = filter === 'all' ? Object.values(models) : [models[filter]]
-const allSpecs = Object.values(models)
+const activeFilter = computed(() => route.query.filter || 'all')
+const allSpecs = computed(() => {
+  if (activeFilter.value === 'all') {
+    return Object.values(models)
+  }
+
+  return models[activeFilter.value] ? [models[activeFilter.value]] : Object.values(models)
+})
 
 const handleFilter = (code) => {
-  navigate({ query: { filter: code }, meta: { filter: code } })
+  router.push({
+    query: code === 'all' ? {} : { filter: code }
+  })
 }
 </script>
 

@@ -1,9 +1,7 @@
 <template>
-  <App>
-    <BlogPage />
-  </App>
+  <Blog />
 </template>
 
 <script setup>
-import BlogPage from './Blog.vue'
+import Blog from '../Blog.vue'
 </script>

@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { t } from './i18n/lang.js'
+import { t } from '../i18n/lang.js'
 import SpecTable from './SpecTable.vue'
 
 const modelSpec = {

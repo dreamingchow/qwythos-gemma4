@@ -32,14 +32,24 @@
 </template>
 
 <script setup>
-import { t } from './i18n/lang.js'
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { t } from '../i18n/lang.js'
 import SpecTable from './SpecTable.vue'
+import gemma4Spec from '../mock/gemma4-spec.js'
+import gemma3eSpec from '../mock/gemma3e-spec.js'
+import gemma2bSpec from '../mock/gemma2b-spec.js'
 
 const route = useRoute()
-const modelId = route.params.id || 'gemma4h'
+const modelId = computed(() => route.params.id || 'gemma4')
+const specs = {
+  gemma4: gemma4Spec,
+  gemma3e: gemma3eSpec,
+  gemma2b: gemma2bSpec
+}
 
 const defaults = {
-  name: t('modelsList.gemma4h'),
+  name: 'Gemma 4',
   parameters: 'tbd',
   releaseDate: '2025',
   language: 'English',
@@ -64,11 +74,11 @@ const defaults = {
   reqLicensePatents: 'No patent restrictions'
 }
 
-const spec = {
+const spec = computed(() => specs[modelId.value] || {
   ...defaults,
-  id: modelId,
+  id: modelId.value,
   moreInfo: {}
-}
+})
 </script>
 
 <style>

@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { t } from './i18n/lang.js'
+import { t } from '../i18n/lang.js'
 
 const props = defineProps({
   spec: {

@@ -23,6 +23,10 @@
 
 <script setup>
 import { t } from './i18n/lang.js'
+
+const postDate = '2025'
+const postTitle = 'Gemma 4'
+const postExcerpt = t('blog.description')
 </script>
 
 <style>

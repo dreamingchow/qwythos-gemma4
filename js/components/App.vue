@@ -1,11 +1,12 @@
 <template>
   <AppBar />
-  <slot />
+  <RouterView />
   <Footer />
 </template>
 
 <script setup>
 import { onMounted } from 'vue'
+import { RouterView } from 'vue-router'
 import AppBar from './AppBar.vue'
 import Footer from './Footer.vue'
 

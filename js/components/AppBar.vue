@@ -17,7 +17,7 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { computed } from 'vue'
-import { t } from './lang.js'
+import { t } from '../i18n/lang.js'
 import LanguageSelect from './LanguageSelect.vue'
 
 const route = useRoute()

@@ -20,8 +20,9 @@
 </template>
 
 <script setup>
-import { t } from './lang.js'
-const props = defineProps({
+import { t } from '../i18n/lang.js'
+
+defineProps({
   modelSpec: {
     type: Object,
     required: true

@@ -1,7 +1,5 @@
 <template>
-  <App>
-    <SpecPage />
-  </App>
+  <SpecPage />
 </template>
 
 <script setup>

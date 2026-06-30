@@ -1,7 +1,5 @@
 <template>
-  <App>
-    <AddModelPage />
-  </App>
+  <AddModelPage />
 </template>
 
 <script setup>

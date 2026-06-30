@@ -1,4 +1,4 @@
-import { t } from './lang.js'
+import { t } from '../i18n/lang.js'
 
 export function createSpecTable(spec) {
   const rows = [

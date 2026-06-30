@@ -1,7 +1,5 @@
 <template>
-  <App>
-    <ModelsPage />
-  </App>
+  <ModelsPage />
 </template>
 
 <script setup>

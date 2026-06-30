@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { t } from './lang.js'
+import { t } from '../i18n/lang.js'
 import Hero from './Hero.vue'
 </script>
 

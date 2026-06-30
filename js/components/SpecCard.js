@@ -1,4 +1,4 @@
-import { t } from './i18n/lang.js'
+import { t } from '../i18n/lang.js'
 
 export function SpecCard(props) {
   const { spec } = props

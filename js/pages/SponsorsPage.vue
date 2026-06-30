@@ -1,7 +1,5 @@
 <template>
-  <App>
-    <SponsorsPage />
-  </App>
+  <SponsorsPage />
 </template>
 
 <script setup>
